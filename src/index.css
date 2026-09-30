@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light dark;
   --bg: #f4f5f7;
   --card: #ffffff;
   --text: #1f2937;
@@ -54,11 +55,14 @@ body {
 
   .item {
     transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease;
-    max-height: 120px;
+    max-height: 160px;
     overflow: hidden;
     animation: pop 0.25s ease;
   }
   .item.out { opacity: 0; transform: translateX(24px); max-height: 0; }
+
+  .chip-neutral { border: 1px solid var(--line); color: var(--muted); }
+  .chip-add { border: 1px dashed var(--line); color: var(--muted); }
 
   .p-low { background: #dcfce7; color: #166534; }
   .p-medium { background: #fef3c7; color: #92400e; }
