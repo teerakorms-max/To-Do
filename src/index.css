@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f4f5f7;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --accent: #4f46e5;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111318;
+    --card: #1b1e26;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --line: #2b2f3a;
+    --accent: #818cf8;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@layer components {
+  .card { background: var(--card); box-shadow: var(--shadow); border-radius: 16px; }
+  .line { border-color: var(--line); }
+  .muted { color: var(--muted); }
+  .accent-text { color: var(--accent); }
+  .accent-bg { background: var(--accent); color: #fff; }
+
+  .field {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    outline: none;
+  }
+  .field:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+
+  .item {
+    transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease;
+    max-height: 120px;
+    overflow: hidden;
+    animation: pop 0.25s ease;
+  }
+  .item.out { opacity: 0; transform: translateX(24px); max-height: 0; }
+
+  .p-low { background: #dcfce7; color: #166534; }
+  .p-medium { background: #fef3c7; color: #92400e; }
+  .p-high { background: #fee2e2; color: #991b1b; }
+  .bar-low { background: #22c55e; }
+  .bar-medium { background: #f59e0b; }
+  .bar-high { background: #ef4444; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .p-low { background: #14532d; color: #bbf7d0; }
+  .p-medium { background: #78350f; color: #fde68a; }
+  .p-high { background: #7f1d1d; color: #fecaca; }
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
